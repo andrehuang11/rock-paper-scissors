@@ -38,8 +38,8 @@ function game() {
             playerSelection = prompt("Rock, paper or scissors?");
         } while (playerSelection.toLowerCase() !== "rock" && playerSelection.toLowerCase() !== "paper" && playerSelection.toLowerCase() !== "scissors");
         let computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
         let result = playRound(playerSelection, computerSelection);
+        console.log(result);
         if (result.includes("Win")) {
             playerScore += 1;
         } else if (result.includes("Lose")) {
