@@ -1,3 +1,9 @@
+const container = document.querySelector('#container');
+const buttons = document.querySelectorAll('button');
+
+let playerScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     let randomnumber = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
     
@@ -12,28 +18,42 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection.toLowerCase() === "rock" && computerSelection.toLowerCase() === "scissors") {
+        ++playerScore;
         return "You Win! Rock beats Scissors";
     } else if (playerSelection.toLowerCase() === "rock" && computerSelection.toLowerCase() === "paper") {
+        ++computerScore;
         return "You Lose! Paper beats Rock";
     } else if ((playerSelection.toLowerCase() === "scissors" && computerSelection.toLowerCase() === "rock")) {
+        ++computerScore;
         return "You lose! Rock beats Scissors";
     } else if (playerSelection.toLowerCase() === "scissors" && computerSelection.toLowerCase() === "paper") {
+        ++playerScore;
         return "You Win! Scissors beats Paper";
     } else if ((playerSelection.toLowerCase() === "paper" && computerSelection.toLowerCase() === "rock")) {
+        ++playerScore;
         return "You Win! Paper beats Rock";
     } else if ((playerSelection.toLowerCase() === "paper" && computerSelection.toLowerCase() === "scissors")) {
+        ++computerScore;
         return "You Lose! Scissors beats Paper";
     } else {
         return "Draw!";
     }
 }
 
-const buttons = document.querySelectorAll('button');
+
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
-    console.log(playRound(button.textContent, getComputerChoice()));
+    const content = document.createElement('div');
+    content.classList.add('content');
+    content.textContent = playRound(button.textContent, getComputerChoice());
+    container.appendChild(content);
+    
+    document.getElementById('player').innerText = "Player: " + playerScore;
+    document.getElementById('computer').innerText = "Computer: " + computerScore;
+
   });
 });
+
 
 // function game() {
 //     let playerScore = 0;
