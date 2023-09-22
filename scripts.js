@@ -35,24 +35,35 @@ function playRound(playerSelection, computerSelection) {
     } else if ((playerSelection.toLowerCase() === "paper" && computerSelection.toLowerCase() === "scissors")) {
         ++computerScore;
         return "You Lose! Scissors beats Paper";
-    } else {
+    }
+     else {
         return "Draw!";
     }
 }
 
+function showWinner() {
+    if (playerScore === 5) {
+        return "Player wins!";
+    } else {
+        return "Computer wins!";
+    }
+}
+
+document.getElementById("reset").style.display = "none";
 
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
-    const content = document.createElement('div');
-    content.classList.add('content');
-    content.textContent = playRound(button.textContent, getComputerChoice());
-    container.appendChild(content);
-    
-    document.getElementById('player').innerText = "Player: " + playerScore;
-    document.getElementById('computer').innerText = "Computer: " + computerScore;
-
+    if (playerScore != 5 && computerScore != 5) {
+        document.getElementById('result').innerText = playRound(button.textContent, getComputerChoice());
+        document.getElementById('player').innerText = "Player: " + playerScore;
+        document.getElementById('computer').innerText = "Computer: " + computerScore;
+    } else {
+        document.getElementById('winner').innerText = showWinner();
+        document.getElementById("reset").style.display = ""
+    }
   });
 });
+
 
 
 // function game() {
