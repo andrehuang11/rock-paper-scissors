@@ -3,17 +3,20 @@ const buttons = document.querySelectorAll('button');
 const result = document.getElementById('result');
 const playerScoreDiv = document.getElementById('player');
 const computerScoreDiv = document.getElementById('computer');
-document.getElementById("reset").style.display = "none";
+const winner = document.getElementById('winner'); 
+const reset = document.getElementById("reset");
+
+reset.style.display = "none";
 
 let playerScore = 0;
 let computerScore = 0;
 
 function getComputerChoice() {
-    let randomnumber = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+    let randomNumber = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
     
-    if (randomnumber === 1) {
+    if (randomNumber === 1) {
         return "Rock";
-    } else if (randomnumber === 2) {
+    } else if (randomNumber === 2) {
         return "Paper";
     } else {
         return "Scissors";
@@ -46,11 +49,11 @@ function playRound(playerSelection, computerSelection) {
 
 function showWinner(playerScore, computerScore) {
     if (playerScore === "Player: 5") {
-        document.getElementById('winner').innerText = "Player wins!";
-        document.getElementById("reset").style.display = "";
+        winner.innerText = "Player wins!";
+        reset.style.display = "";
     } else if (computerScore === "Computer: 5")  {
-        document.getElementById('winner').innerText = "Computer wins!";
-        document.getElementById("reset").style.display = "";
+        winner.innerText = "Computer wins!";
+        reset.style.display = "";
     }
 }
 
